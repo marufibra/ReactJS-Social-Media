@@ -2,7 +2,7 @@ import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import { useState } from 'react';
 import axios from 'axios';
-import {useLocation} from 'react-router-dom'
+import { useLocation,useNavigate } from 'react-router-dom'
 import moment from 'moment';
 
 const Write = () => {
@@ -12,43 +12,63 @@ const Write = () => {
     const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cat || '');
 
+    // const upload = async () => {
+    //     if (!file) return null;// No uploads when there is no file
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append('file', file)
+
+    //         const url = `${import.meta.env.VITE_API_URL}/upload`;
+    //         const res = await axios.post(url,formData);
+    //         return res.data;
+
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+    const navigate = useNavigate();
+
     const upload = async () => {
         if (!file) return null;// No uploads when there is no file
         try {
             const formData = new FormData();
-            formData.append('file', file)
+            formData.append('file', file);
 
             const url = `${import.meta.env.VITE_API_URL}/upload`;
-            const res = await axios.post(url,formData);
-            return res.data;
-
+            
+            const res = await axios.post(url, formData);
+            // console.log (res.data.url);
+            return res.data.url; // Cloudinary URL
         } catch (err) {
             console.log(err);
         }
-    }
+    };
+
 
     const handleClick = async (e) => {
         e.preventDefault();
         const imgUrl = await upload();
 
-        try{
-            state ? await axios.put(`${import.meta.env.VITE_API_URL}/posts/${state.id}`,{
+        try {
+            state ? await axios.put(`${import.meta.env.VITE_API_URL}/posts/${state.id}`, {
                 title,
-                desc:value,
+                desc: value,
                 cat,
                 img: file ? imgUrl : "",
-            },{ withCredentials: true })
-            :await axios.post(`${import.meta.env.VITE_API_URL}/posts/`,{
-                title,
-                desc:value,
-                cat,
-                img: file ? imgUrl : "",
-                date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
-            },{ withCredentials: true })
+            }, { withCredentials: true })
+                : await axios.post(`${import.meta.env.VITE_API_URL}/posts/`, {
+                    title,
+                    desc: value,
+                    cat,
+                    img: file ? imgUrl : "",
+                    date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
+                }, { withCredentials: true })
 
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
+
+        navigate("/");
     }
 
     return (

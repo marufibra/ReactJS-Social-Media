@@ -23,6 +23,7 @@ const Login = () => {
     const handleSubmit = async e => {
         e.preventDefault(); //prevents page from refreshing
         try {
+            
             await login(inputs);
             navigate("/")
         } catch (err) {

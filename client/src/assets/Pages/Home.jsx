@@ -24,7 +24,7 @@ const Home = () => {
     }, [cat]);
 
 
-    const imgUrl = `${import.meta.env.VITE_URL}/uploads/`;
+    // const imgUrl = `${import.meta.env.VITE_URL}/uploads/`;
 
     const htmlToText = (html) => {
         const temp = document.createElement("div");
@@ -70,7 +70,7 @@ const Home = () => {
                     posts.map((post) => (
                         <div className='post' key={post.id}>
                             <div className='img'>
-                                <img src={imgUrl + post.img} alt="" />
+                                <img src={post.img} alt="" />
                             </div>
                             <div className='content'>
 

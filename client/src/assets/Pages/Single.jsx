@@ -43,12 +43,12 @@ const Single = () => {
         }
     }
 
-    const imgUrl = `${import.meta.env.VITE_URL}/uploads/`;
+    // const imgUrl = `${import.meta.env.VITE_URL}/uploads/`;
 
     return (
         <div className='single'>
             <div className="content">
-                <img src={imgUrl + post.postImg} alt="" />
+                <img src={ post.postImg} alt="" />
                 <div className="user">
                     {post.userImg && <img src={post.userImg} alt="" />}
                     <div className="info">

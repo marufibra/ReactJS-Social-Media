@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className='navbar'>
             <div className='container'>
                 <div className='logo'>
-                    <Link style={{textDecoration:"none"}} to="/">
+                    <Link style={{ textDecoration: "none" }} to="/">
                         <img src={logo} alt="" /> <div>Home</div>
                     </Link>
                 </div>
@@ -35,15 +35,18 @@ const Navbar = () => {
                     </Link>
                     <span>{currentUser?.username}</span>
                     {currentUser ? (
-                        <span onClick={logout}>Logout</span>
+                        <>
+                            <span onClick={logout}>Logout</span>
+                            <span className='write'>
+                                <a className='link' href='/write'>Write</a>
+                            </span>
+                        </>
                     ) : (
                         <Link className='link' to='/login'>
                             Login
                         </Link>
                     )}
-                    <span className='write'>
-                        <a className='link' href='/write'>Write</a>
-                    </span>
+
                 </div>
             </div>
         </div>
