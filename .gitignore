@@ -3,3 +3,6 @@ api/node_modules
 client/node_modules
 mysql-crud
 youtube2022-blog-app
+dist
+blog
+socialMedia/node_modules
