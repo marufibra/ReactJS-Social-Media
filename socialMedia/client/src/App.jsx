@@ -2,7 +2,7 @@
 import LeftBar from './components/leftBar/LeftBar'
 import NavBar from './components/navBar/NavBar'
 import RightBar from './components/rightBar/RightBar'
-import Login from './pages/login/login'
+import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import Home from './pages/home/home'
 import Profile from './pages/profile/Profile'
@@ -13,7 +13,7 @@ import {
   Route,
   Outlet,
   Navigate,
-} from "react-router-dom"
+} from "react-router-dom";
 import { DarkModeContext } from './Context/darkModeContext'
 import { useContext } from 'react'
 import { AuthContext } from './Context/AuthContext'
